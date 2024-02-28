@@ -1,0 +1,500 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+
+        a{
+            color: white !important;
+            font-size: 18px;
+          }
+          .dropdown li a{
+            color: rgb(13, 10, 240) !important;
+            font-size: 18px;
+          }
+        img {
+            width: 500px;
+            height: 500px;
+            border-radius: 8px 8px 8px 8px; /* Rounded corners on the right side */
+        }
+        .inside img {
+            width: 500px;
+            height: 500px;
+            border-radius: 8px 8px 8px 8px; /* Rounded corners on the right side */
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar bg-success">
+        <div class="container-fluid">
+          <div class="container text-center">
+            <h1 class="text-light pt-4">Easy Living Furniture</h1>
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "home-page" %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "product-page" %}">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "about-page" %}">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "feedback-page" %}">Feedback</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "contact-page" %}">Contact Us</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <strong>Welcome:</strong> <span>{{request.user.full_name}}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url "logout-page" %}">LOGOUT</a></li>
+                </ul>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container pt-2 text-center" >
+        <div class="row justify-content-end">
+            <div class="col-4">
+                    <a href="{% url "cart-page" %}" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Cart</a>
+                    <a href="{% url "wishlist-page" %}" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Wishlist</a>
+            </div>
+        </div>
+      </div>
+    
+    
+
+    <div class="container-fluid pt-2">
+        <h3 class="text-center">TABLES PAGE</h3>
+
+        <div class="container pt-2 text-center">
+            <div class="row">
+
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/gaming-chair.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Euphora Gaming Chair" data-brand="Amazon Basics" data-image="{% static "img/gaming-chair.jpg" %}" data-size="840X380X620 MM" data-color="Red" data-material="Aluminium" data-weight="19060 Grams" data-price="9,651">
+                        <div class="card-body">
+                            <h5 class="card-title">Euphora Gaming Chair</h5>
+                            <p class="card-text">Ergonomic Design : Solimo office chair features a sleek functional design with a tilt mechanism.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Euphora Gaming Chair">
+                                            <input type="hidden" name="price" value="9,651">
+                                            <input type="hidden" name="image" value="{% static "img/gaming-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Euphora Gaming Chair">
+                                            <input type="hidden" name="price" value="9,651">
+                                            <input type="hidden" name="image" value="{% static "img/gaming-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/arm-chair.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Wooden Wing ARM Chair" data-brand="FORESTER FURNITURE" data-image="{% static "img/arm-chair.jpg" %}" data-size="72 x 99 x 148 Centimeters" data-color="PRINT" data-material="Foam" data-weight="29060 Grams" data-price="13,699">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Wing ARM Chair</h5>
+                            <p class="card-text">Heavier and tougher than teak and is resistant to fungi, water and termites.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Wooden Wing ARM Chair">
+                                            <input type="hidden" name="price" value="13,699">
+                                            <input type="hidden" name="image" value="{% static "img/arm-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Wooden Wing ARM Chair">
+                                            <input type="hidden" name="price" value="13,699">
+                                            <input type="hidden" name="image" value="{% static "img/arm-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/recliner.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Motorized Recliner Chair" data-brand="Lezino " data-image="{% static "img/recliner.jpg" %}"  data-size="99.1D x 91.4W x 106.7H Centimeters" data-color="Brown" data-material="Wood" data-weight="40 Kilograms" data-price="30,000">
+                        <div class="card-body">
+                            <h5 class="card-title">Motorized Recliner Chair</h5>
+                            <p class="card-text">Dark Brown | Upholstery Material: Premium Leatherette Soft In Touch & Feel.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Motorized Recliner Chair">
+                                            <input type="hidden" name="price" value="30,000">
+                                            <input type="hidden" name="image" value="{% static "img/recliner.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Motorized Recliner Chair">
+                                            <input type="hidden" name="price" value="30,000">
+                                            <input type="hidden" name="image" value="{% static "img/recliner.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- ROW TWO           -->
+            <div class="row pt-4">
+
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/plastic-chair.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Plastic Chairs" data-brand="MAHARAJA" data-image="{% static "img/plastic-chair.jpg" %}" data-size="58D x 88W x 62H Centimeters" data-color="Brown." data-material="Plastic" data-weight="4 Kilograms" data-price="2,200">
+                        <div class="card-body">
+                            <h5 class="card-title">Plastic Chairs</h5>
+                            <p class="card-text">Our Chairs comes with modern design which will easily fit in your current lifestyle and homes.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Plastic Chairs">
+                                            <input type="hidden" name="price" value="2,200">
+                                            <input type="hidden" name="image" value="{% static "img/plastic-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Plastic Chairs">
+                                            <input type="hidden" name="price" value="2,200">
+                                            <input type="hidden" name="image" value="{% static "img/plastic-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/wing-chair.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Hardwood Wing Chair" data-brand="LUSTRE ENTERPRISE" data-image="{% static "img/wing-chair.jpg" %}" data-size="80D x 85.1W x 102.9H Centimeters" data-color="Yellow" data-material="Wood" data-weight="25 Kilograms" data-price="14,999">
+                        <div class="card-body">
+                            <h5 class="card-title">Hardwood Wing Chair</h5>
+                            <p class="card-text">This is spaciously designed with larger depth to allow for broader seating and allowing complete relaxation.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Hardwood Wing Chair">
+                                            <input type="hidden" name="price" value="14,999">
+                                            <input type="hidden" name="image" value="{% static "img/wing-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Hardwood Wing Chair">
+                                            <input type="hidden" name="price" value="14,999">
+                                            <input type="hidden" name="image" value="{% static "img/wing-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/rock-chair.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Comfort Rocking Chair" data-brand="THEHEARTWILL " data-image="{% static "img/rock-chair.jpg" %}"  data-size="91D x 60W x 110H Centimeters" data-color="Grey" data-material="Rosewood" data-weight="30 Kilograms" data-price="13,999">
+                        <div class="card-body">
+                            <h5 class="card-title">Comfort Rocking Chair</h5>
+                            <p class="card-text">Rocking Chair Seat folding This Rocking Chair is fully Portable & Easy to Dismantle..</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Comfort Rocking Chair">
+                                            <input type="hidden" name="price" value="13,999">
+                                            <input type="hidden" name="image" value="{% static "img/rock-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Comfort Rocking Chair">
+                                            <input type="hidden" name="price" value="13,999">
+                                            <input type="hidden" name="image" value="{% static "img/rock-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+
+            <!-- ROW THREE           -->
+            <div class="row pt-4">
+
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/round-chair.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Club Round Chair" data-brand="Dolonm" data-image="{% static "img/round-chair.jpg" %}" data-size="840X380X620 MM" data-color="Orange" data-material="Foam" data-weight="57.98 Pounds" data-price="9,651">
+                        <div class="card-body">
+                            <h5 class="card-title">Club Round Chair</h5>
+                            <p class="card-text">Ergonomic Design : Solimo office chair features a sleek functional design with a tilt mechanism.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Club Round Chair">
+                                            <input type="hidden" name="price" value="9,651">
+                                            <input type="hidden" name="image" value="{% static "img/round-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Club Round Chair">
+                                            <input type="hidden" name="price" value="9,651">
+                                            <input type="hidden" name="image" value="{% static "img/round-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/white-chair.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Wicker Papasan Chair" data-brand="OSP Home Furnishings" data-image="{% static "img/white-chair.jpg" %}" data-size="40 W x 36 D x 35.25 H" data-color="Grey Frame With White Cushion" data-material="Metal" data-weight="29 Pounds" data-price="60,904">
+                        <div class="card-body">
+                            <h5 class="card-title">Wicker Papasan Chair</h5>
+                            <p class="card-text">Create a laid back vibe in your home with our twist on the classic papasan chair design.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Wicker Papasan Chair">
+                                            <input type="hidden" name="price" value="60,904">
+                                            <input type="hidden" name="image" value="{% static "img/white-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Wicker Papasan Chair">
+                                            <input type="hidden" name="price" value="60,904">
+                                            <input type="hidden" name="image" value="{% static "img/white-chair.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <img src="{% static "img/bar.jpg" %}" class="card-img-top" alt="..." data-toggle="modal" data-target="#imageModal" data-title="Decor & More Bar Stool" data-brand="Decor & More" data-image="{% static "img/bar.jpg" %}"  data-size="48D x 48W x 30H Centimeters" data-color="White" data-material="Faux Leather" data-weight="1600 Grams" data-price="8,499">
+                        <div class="card-body">
+                            <h5 class="card-title">Decor & More Bar Stool</h5>
+                            <p class="card-text">CLASSIC AND VERSATILE: These upgraded bar stool combine the modern and classic style.</p>
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="title" value="Decor & More Bar Stool">
+                                            <input type="hidden" name="price" value="8,499">
+                                            <input type="hidden" name="image" value="{% static "img/bar.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success"><span><i class="fa-solid fa-cart-shopping"></i></span> Add to Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form method="post">
+                                            <input type="hidden" name="action" value="wishlist">
+                                            <input type="hidden" name="title" value="Decor & More Bar Stool">
+                                            <input type="hidden" name="price" value="8,499">
+                                            <input type="hidden" name="image" value="{% static "img/bar.jpg" %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary"><span><i class="fa-solid fa-heart"></i></span> Add to Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </div>
+
+
+    <div class="modal modal-lg fade text-center" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- Close button in the modal header -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container inside">
+                        <img src="" class="card-img-top" alt="...">
+                    </div>
+                    <div class="container pt-2">
+                        <h3 id="modalTitle1">Chair Title</h3>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                              <div class="col-4">
+                                <p id="">Brand:</p>
+                              </div>
+                              <div class="col-4">
+                                <p id="modalBrand1">Brand:</p>
+                              </div>
+                            </div>
+                            <div class="row justify-content-center">
+                              <div class="col-4">
+                                <p id="">Size:</p>
+                              </div>
+                              <div class="col-4">
+                                <p id="modalSize1"></p>
+                              </div>
+                            </div>
+                            <div class="row justify-content-center">
+                              <div class="col-4">
+                                <p id="">Color:</p>
+                              </div>
+                              <div class="col-4">
+                                <p id="modalColor1"></p>
+                              </div>
+                            </div>
+                            <div class="row justify-content-center">
+                              <div class="col-4">
+                                <p id="">Weight:</p>
+                              </div>
+                              <div class="col-4">
+                                <p id="modalWeight1"></p>
+                              </div>
+                            </div>
+                            <div class="row justify-content-center">
+                              <div class="col-4">
+                                <p id="">Material:</p>
+                              </div>
+                              <div class="col-4">
+                                <p id="modalMaterial1"></p>
+                              </div>
+                            </div>
+                        </div>
+                        
+                        <h5 id="modalPrice1"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4dd23f7737.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // Event listener for when the modal is about to be shown
+            $('.modal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var title = button.data('title'); // Extract value from data-title attribute
+                var brand = button.data('brand'); // Extract value from data-details attribute
+                var imageSource = button.data('image'); // Extract value from data-image attribute
+                var size = button.data('size'); // Extract value from data-image attribute
+                var color = button.data('color'); // Extract value from data-image attribute
+                var weight = button.data('weight'); // Extract value from data-image attribute
+                var material = button.data('material'); // Extract value from data-image attribute
+                var price = button.data('price'); // Extract value from data-image attribute
+    
+                // Update the modal content based on data attributes
+                var modal = $(this);
+                modal.find('[id^="modalTitle"]').text(title); // Update modal title
+                modal.find('[id^="modalBrand"]').text(brand); // Update modal details
+                modal.find('[id^="modalSize"]').text(size); // Update modal details
+                modal.find('[id^="modalColor"]').text(color); // Update modal details
+                modal.find('[id^="modalWeight"]').text(weight); // Update modal details
+                modal.find('[id^="modalMaterial"]').text(material); // Update modal details
+                modal.find('[id^="modalPrice"]').text("₹"+price+"/-"); // Update modal details
+                modal.find('.inside img').attr('src', imageSource); // Update modal image
+            });
+        });
+    </script>
+
+</body>
+</html>
